@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dr. Ghost 👻🎃</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- Spooky Custom Ghost Cursor -->
+    <div id="ghost-cursor" class="ghost-cursor">
+        <svg viewBox="0 0 36 36" class="ghost-svg">
+            <path d="M18 2C10.268 2 4 8.268 4 16v14l4-3 4 3 4-3 4 3 4-3 4 3V16c0-7.732-6.268-14-14-14z" fill="#00ff66" stroke="#ffffff" stroke-width="1.5"/>
+            <circle cx="13" cy="13" r="2" fill="#0a0612"/>
+            <circle cx="23" cy="13" r="2" fill="#0a0612"/>
+            <path d="M16 18c1 1.5 3 1.5 4 0" stroke="#0a0612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <h1>Happy Spooky Birthday Dr. Ghost 👻</h1>
+        
+        <!-- Dual Welcome Photo Frame Grid (i1.JPG & i2.jpeg) -->
+        <div class="welcome-photos-container">
+            <div class="welcome-photo-frame">
+                <img src="./i1.JPG" alt="Dr. Ghost Moment 1" class="welcome-photo" onerror="this.src='https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&q=80'">
+            </div>
+            <div class="welcome-photo-frame">
+                <img src="./i2.jpg" alt="Dr. Ghost Moment 2" class="welcome-photo" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&q=80'">
+            </div>
+        </div>
+
+        <div class="greeting"></div>
+        <button class="cta-button">Enter the Haunted Chamber 🎃✨</button>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

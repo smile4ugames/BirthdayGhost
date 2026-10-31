@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haunted Gallery ✨</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="./last.css">
+</head>
+<body>
+
+    <!-- Custom Ghost Cursor -->
+    <div id="ghost-cursor" class="ghost-cursor">
+        <svg viewBox="0 0 36 36" class="ghost-svg">
+            <path d="M18 2C10.268 2 4 8.268 4 16v14l4-3 4 3 4-3 4 3 4-3 4 3V16c0-7.732-6.268-14-14-14z" fill="#00ff66" stroke="#ffffff" stroke-width="1.5"/>
+            <circle cx="13" cy="13" r="2" fill="#0a0612"/>
+            <circle cx="23" cy="13" r="2" fill="#0a0612"/>
+            <path d="M16 18c1 1.5 3 1.5 4 0" stroke="#0a0612" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+    </div>
+
+    <div id="flower-rain-container"></div>
+
+    <section class="welcome">
+        <h1>Our Cursed Best Moments ✨</h1>
+        <p>Every laugh, spooky chat, and milestone with Dr. Ghost makes the afterlife brighter!</p>
+    </section>
+
+    <!-- Memory Gallery Cards (d1, d2, d3) -->
+    <div class="memory-container">
+        <div class="memory-card">
+            <img src="./d1.jpg" alt="Her Smile" class="memory-img" onerror="this.src='https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&q=80'">
+            <div class="memory-title">Phantom Grin ⭐</div>
+            <div class="memory-caption">You’re truly one of the sweetest best friends in the haunting grounds! ✨</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d2.jpg" alt="Together Vibes" class="memory-img" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&q=80'">
+            <div class="memory-title">Cauldron Vibes 🔮</div>
+            <div class="memory-caption">May your journey ahead be filled with endless happiness and pumpkin lattes. 😊🤝</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d3.jpg" alt="Awesome Soul" class="memory-img" onerror="this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&q=80'">
+            <div class="memory-title">Royal Necromancer 👑</div>
+            <div class="memory-caption">Keep being the amazing ghoul you are—bringing bright positive chaos wherever you float! ⭐</div>
+        </div>
+    </div>
+
+    <!-- Surprise Modal Overlay for d4.jpg -->
+    <div id="surprise-modal" class="surprise-modal">
+        <div class="surprise-card" id="surprise-card">
+            <div class="surprise-badge">Special Surprise Memory 🌟</div>
+            <div class="surprise-img-frame">
+                <img src="./d4.jpg" alt="Surprise Memory Dr Ghost" onerror="this.src='https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&q=80'">
+            </div>
+            <p class="surprise-text">Happy Birthday Dr. Ghost! Keep spreading endless smiles & spooky joy! 🥳✨</p>
+            <button id="modal-back-btn" class="modal-back-btn">Back To Start ⭐</button>
+        </div>
+    </div>
+
+    <!-- Final Message Section -->
+    <section class="final-message">
+        <h2>Thank You for Being an Awesome Best Friend 🏆</h2>
+        <p>Every laugh, every chat, and every fun memory we’ve shared has been truly special.💫<br>
+        I’m so grateful for our bond and for all the joy you bring. On your birthday, I wish for endless happiness, love, and grand success for you! 🎃</p>
+        <p>You deserve all the joy in the world—keep shining and floating high! ✨</p>
+        
+        <button id="action-btn" class="goodbye-btn">Click to amaze ✨</button>
+    </section>
+
+    <script>
+        const ghostCursor = document.getElementById('ghost-cursor');
+        document.addEventListener('mousemove', (e) => {
+            ghostCursor.style.left = e.clientX + 'px';
+            ghostCursor.style.top = e.clientY + 'px';
+
+            if (Math.random() < 0.3) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'cursor-sparkle';
+                const symbols = ['🎃', '👻', '🦇', '✨'];
+                sparkle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                sparkle.style.fontSize = '12px';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 700);
+            }
+        });
+
+        const actionBtn = document.getElementById('action-btn');
+        const modalBackBtn = document.getElementById('modal-back-btn');
+        const surpriseModal = document.getElementById('surprise-modal');
+        const surpriseCard = document.getElementById('surprise-card');
+
+        actionBtn.addEventListener('click', () => {
+            surpriseModal.style.display = 'flex';
+            
+            gsap.fromTo(surpriseCard, 
+                { scale: 0.1, rotationY: 180, opacity: 0 },
+                { scale: 1, rotationY: 0, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }
+            );
+
+            triggerSpookyRain();
+            actionBtn.style.display = 'none';
+        });
+
+        modalBackBtn.addEventListener('click', () => {
+            gsap.to('body', {
+                opacity: 0,
+                duration: 0.8,
+                onComplete: () => {
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+
+        function triggerSpookyRain() {
+            const flowerContainer = document.getElementById('flower-rain-container');
+            const rainItems = ['🎃', '👻', '🦇', '💀', '🕷️', '🍬', '✨', '🔮', '⭐'];
+            const itemCount = 500;
+
+            for (let i = 0; i < itemCount; i++) {
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'falling-flower';
+                    item.innerText = rainItems[Math.floor(Math.random() * rainItems.length)];
+                    
+                    const startX = Math.random() * window.innerWidth;
+                    const size = Math.random() * 28 + 18; 
+                    const duration = Math.random() * 4 + 2.5; 
+                    
+                    item.style.left = startX + 'px';
+                    item.style.fontSize = size + 'px';
+                    flowerContainer.appendChild(item);
+
+                    gsap.fromTo(item, 
+                        { y: -60, x: startX, rotation: 0, opacity: 1 },
+                        { 
+                            y: window.innerHeight + 100, 
+                            x: startX + (Math.random() * 200 - 100), 
+                            rotation: Math.random() * 1080 - 540, 
+                            opacity: 0, 
+                            duration: duration, 
+                            ease: "power1.out",
+                            onComplete: () => item.remove()
+                        }
+                    );
+                }, i * 10);
+            }
+        }
+    </script>
+</body>
+</html>

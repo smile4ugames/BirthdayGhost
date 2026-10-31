@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka:wght@500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0612 0%, #1f0a30 50%, #050308 100%);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    font-family: 'Fredoka', sans-serif;
+    overflow-x: hidden;
+    color: #f3f4f6;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.ghost-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 42px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 0 10px rgba(0, 255, 102, 0.7));
+    transition: transform 0.15s ease-out;
+}
+
+.ghost-svg {
+    width: 100%;
+    height: 100%;
+    animation: ghostGlow 2s infinite alternate ease-in-out;
+}
+
+@keyframes ghostGlow {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.08) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.cursor-sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    border-radius: 50%;
+    animation: sparkleFade 0.7s linear forwards;
+}
+
+@keyframes sparkleFade {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(180deg); }
+}
+
+#flower-rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9995;
+    overflow: hidden;
+}
+
+.falling-flower {
+    position: fixed;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(255,102,0,0.5));
+}
+
+.welcome {
+    text-align: center;
+    padding: 3.5rem 1.5rem 1.5rem;
+    position: relative;
+    z-index: 3;
+}
+
+.welcome h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 3.5rem;
+    color: #ff6600;
+    text-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+    margin-bottom: 0.8rem;
+}
+
+.welcome p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 600;
+    color: #d1d5db;
+}
+
+.memory-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 3;
+}
+
+.memory-card {
+    background: rgba(18, 9, 31, 0.95);
+    border-radius: 20px;
+    padding: 1.25rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 2px solid #8a2be2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.memory-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 255, 102, 0.4);
+}
+
+.memory-img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 1rem;
+    border: 1px solid #ff6600;
+}
+
+.memory-title {
+    font-family: 'Creepster', cursive;
+    color: #ff6600;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.memory-caption {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #d1d5db;
+    font-weight: 600;
+}
+
+.surprise-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9900;
+    padding: 1rem;
+}
+
+.surprise-card {
+    background: #12091f;
+    border-radius: 25px;
+    padding: 1.5rem;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(255, 102, 0, 0.6);
+    border: 4px solid #ff6600;
+    position: relative;
+    z-index: 9910;
+}
+
+.surprise-badge {
+    background: linear-gradient(45deg, #ff6600, #8a2be2);
+    color: white;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.surprise-img-frame {
+    width: 100%;
+    height: 260px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 2px solid #8a2be2;
+}
+
+.surprise-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.surprise-text {
+    font-family: 'Creepster', cursive;
+    font-size: 1.6rem;
+    color: #ff6600;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+}
+
+.modal-back-btn {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    font-size: 1.15rem;
+    background: linear-gradient(45deg, #8a2be2, #00ff66);
+    color: #050308;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(0, 255, 102, 0.5);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.modal-back-btn:hover {
+    transform: scale(1.06);
+}
+
+.final-message {
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+    background: rgba(18, 9, 31, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 30px;
+    max-width: 900px;
+    margin: 2rem auto 1rem;
+    border: 2px solid #8a2be2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 3;
+}
+
+.final-message h2 {
+    font-family: 'Creepster', cursive;
+    font-size: 3.2rem;
+    color: #ff6600;
+    margin-bottom: 1.2rem;
+}
+
+.final-message p {
+    font-size: 1.15rem;
+    max-width: 750px;
+    margin: 0 auto 1.2rem;
+    line-height: 1.7;
+    font-weight: 600;
+    color: #d1d5db;
+}
+
+.goodbye-btn {
+    display: inline-block;
+    padding: 1.1rem 2.8rem;
+    font-size: 1.25rem;
+    background: linear-gradient(45deg, #ff6600, #8a2be2);
+    color: white;
+    border: 2px solid #00ff66;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.goodbye-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(0, 255, 102, 0.8);
+}
